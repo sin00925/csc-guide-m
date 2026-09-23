@@ -4894,6 +4894,15 @@ select,
 .v342-no-result{padding:14px 12px;text-align:center}
 .v342-no-result b{display:block;font-size:11.5px;color:#334155;margin-bottom:3px}
 .v342-no-result span{display:block;font-size:10px;color:#94a3b8}
+/* v355: 애매한 병원 현장 표현 검색 시 상단 안내 배너 */
+.v355-ambiguous-banner{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:10px 11px;margin-bottom:6px}
+.v355-ambiguous-banner b{display:block;font-size:10.5px;color:#92400e;margin-bottom:2px}
+.v355-ambiguous-banner span{display:block;font-size:10px;color:#78716c;line-height:1.4}
+/* v355: 마커 상세 팝업 - "병원에서 이렇게 말할 수 있어요" 태그 박스 */
+.v355-hospital-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:12px 14px;margin-top:10px}
+.v355-hospital-head{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:800;color:#172033;margin-bottom:8px}
+.v355-hospital-chips{display:flex;flex-wrap:wrap;gap:6px}
+.v355-hospital-chip{display:inline-block;font-size:11px;color:#334155;background:#fff;border:1px solid #dbe3ea;border-radius:999px;padding:5px 10px;white-space:nowrap}
 
 /* 준비중 마커 팝업 */
 .marker-pending-modal-v60{
@@ -5091,6 +5100,49 @@ select,
   background:#fbfbff;
   transform:translateY(-1px);
 }
+
+/* v349: 감염패널 전용 'HBsAg vs Anti-HBs(HBsAb) 비교' 바로가기 - 갑상선/당뇨 버튼과 동일한 톤
+   qd23-head는 전역적으로 height:0으로 숨겨져 있어(위 v85 규칙), 감염패널일 때만 이 클래스로 다시 노출시킴 */
+.qd23-head.qd23-head-infection-v349{
+  height:auto !important;
+  min-height:0 !important;
+  margin:0 0 9px !important;
+  padding:0 !important;
+  border:0 !important;
+  overflow:visible !important;
+  visibility:visible !important;
+}
+.infection-pattern-launch-v349{
+  width:100%;
+  min-height:47px;
+  border:1px solid #d7dce6;
+  border-radius:12px;
+  background:linear-gradient(180deg,#ffffff 0%,#fafbfe 100%);
+  color:#172033;
+  padding:8px 12px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+  text-align:left;
+  box-shadow:0 3px 9px rgba(15,23,42,.035);
+}
+.infection-pattern-launch-v349:hover{
+  border-color:#a5b4fc;
+  background:#fbfbff;
+  transform:translateY(-1px);
+}
+/* v349: HBsAg vs Anti-HBs(HBsAb) 비교표 · 조합 · 핵심암기 - 첨부 이미지 내용 반영 */
+.hb-cs-body-v349{padding:18px 22px 20px}
+.hb-cs-table-v349{width:100%;border-collapse:collapse;margin-bottom:16px;border:1.5px solid #94a3b8}
+.hb-cs-table-v349 th,.hb-cs-table-v349 td{padding:11px 13px;text-align:left;border:1px solid #94a3b8;vertical-align:top;font-size:15.5px}
+.hb-cs-table-v349 th{color:#17324d;font-weight:800;white-space:nowrap;background:#e2e8f0}
+.hb-cs-table-v349 td.hb-cs-label-v349{color:#475569;font-weight:800;white-space:nowrap;width:118px;background:#f1f5f9}
+.hb-cs-combo-v349 .dm-cs-section-title-v110{font-size:15.5px}
+.hb-cs-combo-v349 ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.hb-cs-combo-v349 li{font-size:15.5px;color:#334155;line-height:1.5}
+.hb-cs-memo-v349{margin-top:18px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:14px 16px;font-size:15.5px;color:#1e3a5f;line-height:1.75}
+.hb-cs-memo-v349 b{color:#1d4ed8}
 
 /* 새 버튼 한 줄이 추가되어도 메인 화면 스크롤이 생기지 않도록 비율 보정 */
 .quickdesk-v23{
@@ -9990,7 +10042,7 @@ body.v170-guide-mode .sidebar .brand-v108 .brand-accent-v108{
           <span class="v170-grid-art" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.6" stroke="currentColor" stroke-width="0.26"/><path d="M12 2.8v2.6M12 18.6v2.6M2.8 12h2.6M18.6 12h2.6M5.4 5.4l1.9 1.9M16.7 16.7l1.9 1.9M18.6 5.4l-1.9 1.9M7.3 16.7l-1.9 1.9" stroke="currentColor" stroke-width="0.26" stroke-linecap="round"/></svg></span>
           <span class="v170-grid-copy"><b>감염</b><small>ROTA · Rota/Adeno · NORO  +4</small></span>
           <span class="v170-grid-arrow">↗</span>
-        <span class="v170-grid-hoverlist" aria-hidden="true"><b>감염 마커</b><em style="--i:0">ROTA</em><em style="--i:1">Rota/Adeno</em><em style="--i:2">NORO</em><em style="--i:3">HBsAg</em><em style="--i:4">Anti-HBs</em><em style="--i:5">Anti-HCV</em><em style="--i:6">COVID-19 Ag</em></span></button>
+        <span class="v170-grid-hoverlist" aria-hidden="true"><b>감염 마커</b><em style="--i:0">ROTA</em><em style="--i:1">Rota/Adeno</em><em style="--i:2">NORO</em><em style="--i:3">HBsAg</em><em style="--i:4">Anti-HBs(HBsAb)</em><em style="--i:5">Anti-HCV</em><em style="--i:6">COVID-19 Ag</em></span></button>
 
         <button type="button" class="v170-grid-card rose" data-panel="여성건강" style="--d:5" aria-label="여성건강 패널 열기">
           <span class="v170-grid-top"><i>06</i><small>WOMEN'S HEALTH</small></span>
@@ -10618,9 +10670,10 @@ function showMarkerPending(name,area){
 }
 
 /* v260: 통합 검색 - 마커뿐 아니라 사이드바 퀵메뉴/공통 트러블(워싱카트리지, Invalid 등)도 검색되도록 확장.
-   띄어쓰기·대소문자 구분 없이 매칭(예: '워싱 카트리지'='워싱카트리지', 'tsh'='TSH') */
+   띄어쓰기·대소문자 구분 없이 매칭(예: '워싱 카트리지'='워싱카트리지', 'tsh'='TSH')
+   v355: 하이픈 차이도 무시하도록 확장(예: 'Anti-HBs'='AntiHBs', 'HBs-Ab'='HBsAb') */
 function v260Norm(s){
-  return (s||"").toString().toLowerCase().replace(/\s+/g,"");
+  return (s||"").toString().toLowerCase().replace(/[\s\-]+/g,"");
 }
 /* 제목만으로는 찾기 어려운 항목에 대한 보조 검색어(동의어) */
 const V260_QUICK_ALIASES={
@@ -10643,6 +10696,81 @@ const V260_COMMON_ALIASES={
   invalid:["invaliderror","인밸리드","오류"],
   barcode:["바코드에러","barcodeerror"]
 };
+/* v355: "병원에서 이렇게 말할 수 있어요" - 정식 검사명 대신 병원 현장에서 쓰는 별칭/축약어/질환명으로
+   검색해도 공식 검사 항목을 찾을 수 있게 마커별 현장 표현을 정리. key는 V17_MARKERS의 name과 동일.
+   검색 매칭과 마커 상세 팝업의 태그 표시가 이 데이터 하나를 함께 사용한다. */
+const V355_HOSPITAL_TERMS={
+  "HBsAg":["B형간염 항원","B형간염 Ag","HBs Ag","에이치비에스에이지"],
+  "Anti-HBs":["HBsAb","HBs Ab","HBs antibody","B형간염 항체","B형간염 antibody","B형간염 안티바디"],
+  "Anti-HCV":["C형간염 항체","HCV 항체","HCV Ab","C형간염 안티바디"],
+  "TSH":["갑상선자극호르몬","티에스에이치"],
+  "FreeT4":["FT4","FreeT4","프리티포","프리 T4","갑상선 호르몬"],
+  "T3":["티쓰리","T3 검사"],
+  "CRP":["씨알피","염증수치","염증검사"],
+  "PCT Plus":["피씨티","프로칼시토닌","패혈증 수치","패혈증 검사","감염수치"],
+  "IL-6":["아이엘식스","인터루킨6","사이토카인"],
+  "SAA":["에스에이에이","Serum Amyloid A"],
+  "Tn-I Plus":["트로포닌","트로포닌아이","Troponin I","심근경색 검사"],
+  "CK-MB":["씨케이엠비","CKMB"],
+  "Myoglobin":["마이오글로빈"],
+  "NT-proBNP":["엔티프로비엔피","프로비엔피","심부전 수치","심부전 검사","비엔피","BNP","심장수치"],
+  "D-Dimer":["디다이머","디디머","혈전검사","혈전수치"],
+  "AMH":["에이엠에이치","난소나이","난소나이 검사","난소예비력","난임검사"],
+  "FSH":["에프에스에이치","난포자극호르몬","난임호르몬"],
+  "LH":["엘에이치","황체형성호르몬","배란호르몬"],
+  "PRL":["피알엘","프로락틴","유즙분비호르몬"],
+  "Testosterone":["테스토스테론","남성호르몬"],
+  "β-HCG Plus":["베타에이치씨지","베타 hCG"],
+  "Total ßhCG":["토탈 베타에이치씨지","Total hCG"],
+  "HbA1c":["당화혈색소","에이원씨","헤모글로빈 에이원씨","당뇨검사"],
+  "Insulin":["인슐린","인슐린 수치"],
+  "C-peptide":["씨펩타이드","C peptide","인슐린 분비능","췌장 인슐린 검사"],
+  "Microalbumin":["마이크로알부민","미세알부민","미세단백뇨","소변 알부민"],
+  "Ferritin":["페리틴","저장철","철 저장량","철분검사"],
+  "Vitamin D Neo":["비타민D","비타민디","비타민D 수치"],
+  "PSA":["피에스에이","전립선수치","전립선암 검사","전립선 종양표지자"],
+  "Anti-CCP Plus":["안티씨씨피","CCP 항체","류마티스 검사","류마티스 항체"],
+  "Rota/Adeno":["로타아데노","로타·아데노","장염바이러스"],
+  "ROTA":["로타","로타바이러스"],
+  "NORO":["노로","노로바이러스","장염바이러스"],
+  "COVID-19 Ag":["코로나 항원","코로나 Ag","코로나 검사","코비드 항원"],
+  "Infliximab":["인플릭시맙","레미케이드 농도","인플릭시맙 농도","TDM"],
+  "Total Anti-Infliximab":["인플릭시맙 항체","IFX antibody","항약물항체","레미케이드 항체"],
+  "PTH":["피티에이치","부갑상선호르몬","부갑상선 검사"],
+  "KL-6":["케이엘식스","간질성폐질환 마커","폐섬유화 마커"]
+};
+/* v355: 여러 검사에 걸쳐 공통으로 쓰이는 애매한 표현 - 하나로 단정하지 않고 해당 후보를 모두 보여준다 */
+const V355_AMBIGUOUS_TERMS=[
+  {keywords:["B형간염 검사"],targets:["HBsAg","Anti-HBs"],message:"항원(HBsAg) 검사인지 항체(Anti-HBs) 검사인지 확인해주세요."},
+  {keywords:["갑상선 검사"],targets:["TSH","FreeT4","T3"],message:"정확한 검사 항목을 확인해주세요."},
+  {keywords:["염증마커"],targets:["CRP","IL-6","SAA"],message:"정확한 검사 항목을 확인해주세요."},
+  {keywords:["심근효소","심장효소","심장 3종","심근 3종","Cardiac 3종","심근효소 패널"],targets:["Tn-I Plus","CK-MB","Myoglobin"],message:"정확한 검사 항목을 확인해주세요."},
+  {keywords:["여성호르몬","여성호르몬 검사"],targets:["FSH","LH","PRL"],message:"정확한 검사 항목을 확인해주세요."},
+  {keywords:["임신수치","임신호르몬","임신검사"],targets:["β-HCG Plus","Total ßhCG"],message:"Plus 검사인지 Total 검사인지 확인해주세요."},
+  {keywords:["장염검사"],targets:["Rota/Adeno","ROTA","NORO"],message:"정확한 검사 항목을 확인해주세요."}
+];
+/* v355: 애매한 표현 매칭 - 정규화된 검색어와 키워드가 서로 포함관계면 매칭 */
+function v355FindAmbiguous(rawQ){
+  const q=v260Norm(rawQ);
+  if(!q) return null;
+  return V355_AMBIGUOUS_TERMS.find(g=>g.keywords.some(k=>{
+    const kn=v260Norm(k);
+    return kn===q || kn.includes(q) || q.includes(kn);
+  }));
+}
+/* v355: 마커별 "병원에서 이렇게 말할 수 있어요" 태그 - 데이터가 없으면 섹션 자체를 표시하지 않는다 */
+function v355HospitalTermsHTML(name){
+  const terms=V355_HOSPITAL_TERMS[name];
+  if(!terms||!terms.length) return "";
+  const chips=terms.map(t=>`<span class="v355-hospital-chip">${t}</span>`).join("");
+  return `<div class="v355-hospital-box">
+    <div class="v355-hospital-head">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true"><path d="M8 10h8M8 14h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v10A1.5 1.5 0 0 1 18.5 17H10l-4 3.2V17H5.5A1.5 1.5 0 0 1 4 15.5v-10Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      <span>병원에서 이렇게 말할 수 있어요</span>
+    </div>
+    <div class="v355-hospital-chips">${chips}</div>
+  </div>`;
+}
 function v260BuildIndex(q){
   const out=[];
   Object.keys(QUICK_V17).forEach(key=>{
@@ -10703,10 +10831,45 @@ function searchMarkerIndexV60(){
   const q=v260Norm(rawQ);
   if(!q){closeMarkerSearchV60();return;}
 
-  const markerHits=V17_MARKERS.filter(m=>{
-    const hay=v260Norm([m.displayName,m.name,m.panel,...(m.aliases||[])].join(" "));
+  /* v355: "B형간염 검사"처럼 여러 검사에 걸치는 애매한 표현은 하나로 단정하지 않고
+     안내 문구 + 해당 후보 전체를 보여준다 (일반 검색 결과와 섞지 않음) */
+  const v355Amb=v355FindAmbiguous(rawQ);
+  if(v355Amb){
+    const rows=v355Amb.targets.map(nm=>{
+      const tm=V17_MARKERS.find(x=>x.name===nm||x.displayName===nm);
+      const label=tm?tm.displayName:nm;
+      const sub=tm?tm.panel:"";
+      return `<button class="marker-search-item-v60" type="button"
+        onclick="v260RunResult('marker','${label.replace(/'/g,"\\'")}')">
+        <span><b>${label}</b><small>${sub}</small></span><em>바로보기</em>
+      </button>`;
+    }).join("");
+    box.innerHTML=`<div class="v355-ambiguous-banner"><b>병원에서 통칭해서 사용하는 표현입니다.</b><span>${v355Amb.message}</span></div>${rows}`;
+    box.classList.add("active");
+    return;
+  }
+
+  /* v355: 정식 검사명/패널 완전일치를 먼저 모으고, 별칭·병원 현장 표현은 그다음 우선순위로 추가.
+     병원 표현으로 찾은 경우 sub 텍스트에 '병원 표현: ...'을 표시해 정식명과 구분한다 */
+  const v355Official=V17_MARKERS.filter(m=>{
+    const hay=v260Norm([m.displayName,m.name,m.panel].join(" "));
     return hay.includes(q);
-  }).slice(0,4).map(m=>({kind:"marker",key:m.displayName,label:m.displayName,sub:m.panel}));
+  });
+  const v355AliasOnly=V17_MARKERS.filter(m=>{
+    if(v355Official.includes(m)) return false;
+    const terms=(m.aliases||[]).concat(V355_HOSPITAL_TERMS[m.name]||[]);
+    return v260Norm(terms.join(" ")).includes(q);
+  });
+  const markerHits=v355Official.concat(v355AliasOnly).slice(0,4).map(m=>{
+    const isOfficial=v355Official.includes(m);
+    let sub=m.panel;
+    if(!isOfficial){
+      const terms=(m.aliases||[]).concat(V355_HOSPITAL_TERMS[m.name]||[]);
+      const matched=terms.find(t=>v260Norm(t).includes(q));
+      sub=(matched?`병원 표현: ${matched} · `:"")+m.panel;
+    }
+    return {kind:"marker",key:m.displayName,label:m.displayName,sub};
+  });
 
   const quickHits=v260BuildIndex(q).slice(0,5);
 
@@ -10848,8 +11011,16 @@ function searchCardsOnEnter(){
     v260RunResult(quickHits[0].kind, quickHits[0].key);
     return;
   }
+  /* v355: 애매한 표현으로 Enter를 누르면 상세 팝업 대신, 여러 후보 중 첫 번째로 바로 이동
+     (팝업으로 후보를 모두 보여주는 것은 검색창 드롭다운 쪽에서 처리) */
+  const v355AmbEnter=v355FindAmbiguous(raw);
+  if(v355AmbEnter && v355AmbEnter.targets.length){
+    const firstName=v355AmbEnter.targets[0];
+    const firstM=V17_MARKERS.find(x=>x.name===firstName||x.displayName===firstName);
+    if(firstM){ v260RunResult("marker", firstM.displayName); return; }
+  }
   const markerHit=V17_MARKERS.find(m=>{
-    const hay=v260Norm([m.displayName,m.name,m.panel,...(m.aliases||[])].join(" "));
+    const hay=v260Norm([m.displayName,m.name,m.panel,...(m.aliases||[]),...(V355_HOSPITAL_TERMS[m.name]||[])].join(" "));
     return hay.includes(norm);
   });
   if(markerHit){ v260RunResult("marker", markerHit.displayName); return; }
@@ -11550,6 +11721,67 @@ function closeHomaIrCalcV106(){
   if(lb)lb.classList.remove('open');
 }
 
+/* v349: 감염패널 - HBsAg vs Anti-HBs(HBsAb) 비교 빠르게 보기 (첨부 이미지 텍스트 반영) */
+function openHepBCompareV349(){
+  const ws=document.getElementById("markerWorkspace");
+  if(!ws)return;
+
+  ws.innerHTML=`
+    <div class="marker-modal-v29 hb-cs-modal-v349" role="dialog" aria-modal="true"
+         aria-label="HBsAg Anti-HBs 비교" onclick="event.stopPropagation()">
+
+      <button class="marker-modal-close-v29" onclick="closeMarkerWorkspace()" aria-label="팝업 닫기">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <div class="pattern-modal-head-v62">
+        <div>
+          <h2>HBsAg vs Anti-HBs(HBsAb) 비교</h2>
+          <p class="head-highlight-v63">HBsAg는 <mark>감염(항원)</mark>, Anti-HBs는 <mark>면역(항체)</mark> 여부를 확인하는 검사입니다.</p>
+        </div>
+      </div>
+
+      <div class="hb-cs-body-v349">
+        <table class="hb-cs-table-v349">
+          <tbody>
+            <tr><th>구분</th><th>HBsAg</th><th>Anti-HBs = HBsAb</th></tr>
+            <tr><td class="hb-cs-label-v349">뜻</td><td>B형간염 <b>표면항원</b></td><td>B형간염 <b>표면항체</b></td></tr>
+            <tr><td class="hb-cs-label-v349">쉽게 말하면</td><td><b>바이러스 흔적이 있나?</b></td><td><b>바이러스에 대한 방어 항체가 있나?</b></td></tr>
+            <tr><td class="hb-cs-label-v349">Positive(+) 의미</td><td>현재 감염 가능성 있음</td><td>면역이 형성되어 있을 가능성</td></tr>
+            <tr><td class="hb-cs-label-v349">Negative(-) 의미</td><td>표면항원 검출 안 됨</td><td>표면항체 검출 안 됨</td></tr>
+            <tr><td class="hb-cs-label-v349">역할</td><td>감염 여부 확인 쪽</td><td>항체/면역 여부 확인 쪽</td></tr>
+          </tbody>
+        </table>
+
+        <div class="hb-cs-combo-v349">
+          <div class="dm-cs-section-title-v110">그래서 조합만 보면</div>
+          <ul>
+            <li><b>Ag(-), Ab(+)</b> → 감염 증거는 없고, 항체는 있음</li>
+            <li><b>Ag(+), Ab(-)</b> → 현재 감염 가능성</li>
+            <li><b>Ag(-), Ab(-)</b> → 감염 증거도 없고, 항체도 없음</li>
+            <li><b>Ag(+), Ab(+)</b> → 흔한 조합은 아니라 추가 확인이 필요할 수 있음</li>
+          </ul>
+        </div>
+
+        <div class="hb-cs-memo-v349">
+          <b>진짜 핵심 암기는 이것만</b><br>
+          Ag = Antigen = 항원 = 감염 쪽<br>
+          Ab = Antibody = 항체 = 면역 쪽
+        </div>
+      </div>
+
+      <div class="pattern-caution-v62">
+        <b><svg viewBox="0 0 24 24" width="13" height="13" fill="none" style="display:inline-block;vertical-align:-2px" aria-hidden="true"><path d="M12 4.2L21 19.5H3L12 4.2z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 10v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="16.8" r=".9" fill="currentColor"/></svg> CSC 참고</b>
+        <span>위 내용은 결과 조합을 빠르게 이해하기 위한 일반적인 패턴입니다. 환자 진단을 확정짓는 용도가 아니며 실제 판단은 의료진의 임상 소견과 함께 이루어져야 합니다.</span>
+      </div>
+    </div>`;
+
+  ws.classList.add("active");
+  document.body.classList.add("marker-modal-open");
+}
+
 
 /* v320: 컨트롤 검사 시 샘플타입 안내 - 마커별로 다름 (HbA1c=WB, Rota/Noro/RotaAdeno/Microalbumin/COVID-19 Ag=Others, 나머지=Serum/Plasma) */
 function v320ControlSampleType(name){
@@ -11663,6 +11895,7 @@ function openMarkerWorkspace(key,backCtx){
         ${v106ColdStorageTipHTML(d.name)}
         ${v329StaffNoteHTML(V17_MARKER_INFO_ALL[cm?.name], cm?.name)}
         ${v324CompareBox(V17_MARKER_INFO_ALL[cm?.name], cm?.name)}
+        ${v355HospitalTermsHTML(cm?.name)}
         <div class="v8-scrolltop-wrap" id="mwLeftScrollTop">
           <button class="v8-scrolltop-btn" onclick="document.querySelector('.marker-detail-modal-v74 .modal-col-left-v75').scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로 이동"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" style="vertical-align:-1px;margin-right:4px"><path d="M12 19V5M5 12l7-7 7 7" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>맨 위로</button>
         </div>
@@ -12657,7 +12890,7 @@ function v17RefTableHTML(panel,includeRev,backCtx){
     <table class="thyroid-ref-table-v53">
       <thead><tr><th>검사</th><th>검체</th><th>C-Tip</th><th>General Mode</th><th>권장 항응고제</th><th>검사시간</th><th>참고치</th><th>측정범위</th><th>Indeterminate</th></tr></thead>
       <tbody>${list.map(m=>`<tr data-mk="${m.displayName}" onclick="openMarkerV17('${m.displayName.replace(/'/g,"\\'")}','${backCtx}')" style="cursor:pointer">
-        <td class="marker-name-v53${m.displayName.length>9?" marker-name-wrap-v104":""}">${v249MarkerTitleHTML(m.displayName)}</td><td>${m.specimen}</td><td><b>${m.ctip}</b></td><td><b>${m.general}</b></td>
+        <td class="marker-name-v53${m.displayName.length>9?" marker-name-wrap-v104":""}">${m.displayName==="Anti-HBs"?"Anti-HBs<br>(HBsAb)":v249MarkerTitleHTML(m.displayName)}</td><td>${m.specimen}</td><td><b>${m.ctip}</b></td><td><b>${m.general}</b></td>
         <td>${m.anticoagulant}</td><td><b>${m.time}</b></td><td${v87RefTdAttr(m)}>${v218ConvertCell(m,v87RefCell(m))}</td><td>${v218ConvertCell(m,m.range)}</td><td>${m.indeterminate}</td>
       </tr>`).join("")}</tbody>
     </table>
@@ -12940,6 +13173,7 @@ function switchPanelV17(panel){
     desk?.classList.remove("v17-other-panel");
     ref.classList.remove("ref-single-marker-v77");
     qh.classList.remove("qd23-head-diabetes-v105");
+    qh.classList.remove("qd23-head-infection-v349");
     head.innerHTML=v17Thyroid.refHead;
     tbody.innerHTML=v17Thyroid.refBody;
     mb.innerHTML=v17Thyroid.markerButtons;
@@ -12965,12 +13199,13 @@ function switchPanelV17(panel){
   const list=v17ByPanel(panel);
   const palette=["tsh","ft4","t3","c4","c5","c6","c7"];
   tbody.innerHTML=list.length?list.map((m,i)=>`<tr${m.displayName==="Vitamin D Neo"?" class=\"vitd-row-v105\"":""}>
-    <td class="marker-name-v53 ${list.length===1?"":palette[i%palette.length]}${m.displayName.length>16?" marker-name-wrap-v104":""}" data-storage="${v91StorageText(m.name)}">${m.displayName==="Vitamin D Neo"?"Vitamin D<br>Neo":m.displayName}</td>
+    <td class="marker-name-v53 ${list.length===1?"":palette[i%palette.length]}${m.displayName.length>16?" marker-name-wrap-v104":""}" data-storage="${v91StorageText(m.name)}">${m.displayName==="Vitamin D Neo"?"Vitamin D<br>Neo":m.displayName==="Anti-HBs"?"Anti-HBs<br>(HBsAb)":v249MarkerTitleHTML(m.displayName)}</td>
     <td>${m.specimen}</td><td><b>${m.ctip}</b></td><td><b>${m.general}</b></td>
     <td>${m.anticoagulant}</td><td><b>${m.time}</b></td><td${v87RefTdAttr(m)}>${v218ConvertCell(m,v87RefCell(m))}</td><td>${v218ConvertCell(m,m.range)}</td><td>${m.indeterminate}</td>
   </tr>`).join(""):`<tr><td colspan="9" class="v17-empty-table">등록된 마커가 없습니다.</td></tr>`;
 
   if(panel==="당뇨"){
+    qh.classList.remove("qd23-head-infection-v349");
     qh.classList.add("qd23-head-diabetes-v105");
     qh.innerHTML=`<button type="button" class="diabetes-pattern-launch-v105" onclick="openDiabetesPatternGuideV105()">
       <span class="pattern-launch-icon-v62">↕</span>
@@ -12980,8 +13215,20 @@ function switchPanelV17(panel){
       </span>
       <span class="pattern-launch-arrow-v62">&gt;</span>
     </button>`;
+  }else if(panel==="감염"){
+    qh.classList.remove("qd23-head-diabetes-v105");
+    qh.classList.add("qd23-head-infection-v349");
+    qh.innerHTML=`<button type="button" class="infection-pattern-launch-v349" onclick="openHepBCompareV349()">
+      <span class="pattern-launch-icon-v62">↕</span>
+      <span class="pattern-launch-copy-v62">
+        <b>HBsAg vs Anti-HBs(HBsAb) 비교</b>
+        <small>표면항원(감염) · 표면항체(면역) 조합으로 결과 빠르게 확인</small>
+      </span>
+      <span class="pattern-launch-arrow-v62">&gt;</span>
+    </button>`;
   }else{
     qh.classList.remove("qd23-head-diabetes-v105");
+    qh.classList.remove("qd23-head-infection-v349");
     qh.innerHTML=`<div class="qd23-memory">패널 → 마커 → 제품정보 / 공통응대 순으로 빠르게 이동</div>`;
   }
 
@@ -13029,6 +13276,7 @@ function switchPanelV17(panel){
       ${v106ColdStorageTipHTML(m.name)}
       ${v329StaffNoteHTML(info, m.name)}
       ${v324CompareBox(info, m.name)}
+      ${v355HospitalTermsHTML(m.name)}
       <div class="sm-control-card-v78">
         <div class="head-spec-title"><span class="spec-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3h10v18H7z" stroke="currentColor" stroke-width="2"/><path d="M9 7h6M9 11h6M9 15h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>컨트롤 정보</div>
         <table class="spec-table-v25">
@@ -13140,7 +13388,7 @@ function v17MarkerCard(m,i){
   const md=info?info.hospital:`${m.specimen} · ${m.time}`;
   return `<button class="marker-btn${m.displayName==="Vitamin D Neo"?" vitd-icon-v105":""}" style="background:${bg};border-color:${ramp.border}" onclick="openMarkerV17('${m.displayName}')">
     <span class="mi" style="color:${ramp.accent}">${markerIcon}</span>
-    <span><div class="mn">${m.displayName}</div><div class="mo">${mo}</div>
+    <span><div class="mn">${m.displayName==="Anti-HBs"?"Anti-HBs(HBsAb)":m.displayName}</div><div class="mo">${mo}</div>
     <div class="md">${md}</div><div class="go">${m.displayName} 정보 보기 →</div></span>
   </button>`;
 }
@@ -13271,7 +13519,7 @@ function openMarkerV17(name,backCtx){
         <div class="modal-left-main-v76">
           <div class="kicker">MARKER VIEW · ${m.panel}</div>
           <div class="marker-title-row-v31">
-            <div class="marker-name-v29">${v249MarkerTitleHTML(m.displayName)}${v328TipBadgeHTML(m.name)}</div>
+            <div class="marker-name-v29">${m.displayName==="Anti-HBs"?"Anti-HBs(HBsAb)":v249MarkerTitleHTML(m.displayName)}${v328TipBadgeHTML(m.name)}</div>
           </div>
           ${v93SignalHTML(m.name)?`<div class="desc-v27">${v93SignalHTML(m.name)}</div>`:""}
         </div>
@@ -13299,6 +13547,7 @@ function openMarkerV17(name,backCtx){
       ${v106ColdStorageTipHTML(m.name)}
       ${v329StaffNoteHTML(info, m.name)}
       ${v324CompareBox(info, m.name)}
+      ${v355HospitalTermsHTML(m.name)}
       <div class="v8-scrolltop-wrap" id="mvLeftScrollTop">
         <button class="v8-scrolltop-btn" onclick="document.querySelector('.marker-detail-modal-v74 .modal-col-left-v75').scrollTo({top:0,behavior:'smooth'})" aria-label="맨 위로 이동"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" style="vertical-align:-1px;margin-right:4px"><path d="M12 19V5M5 12l7-7 7 7" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>맨 위로</button>
       </div>
