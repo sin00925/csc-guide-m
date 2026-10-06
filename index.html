@@ -133,6 +133,23 @@ button,input{font:inherit}
 .v343-freqerr-section ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
 .v343-freqerr-section li{display:flex;gap:8px;font-size:12.5px;color:#334155;line-height:1.5}
 .v343-freqerr-section li em{font-style:normal;flex:0 0 auto;width:16px;height:16px;border-radius:50%;background:#eff6ff;color:#1d4ed8;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+/* v359: 자주 발생하는 에러 - CASE별 확인 순서(flow). hanging-indent + auto-fit 그리드로 폭에 따라 자동 1열 전환 */
+.v359-freqerr-flow{margin-top:12px;min-width:0}
+.v359-freqerr-flow>b{display:block;font-size:12px;font-weight:800;color:#1d4ed8;margin-bottom:6px}
+.v359-freqerr-case{border:1px solid #e2e8f0;border-radius:10px;padding:12px 14px;background:#f8fafc;min-width:0}
+.v359-freqerr-case+.v359-freqerr-case{margin-top:8px}
+.v359-freqerr-case-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.v359-freqerr-case-tag{flex:0 0 auto;font-size:10.5px;font-weight:800;color:#1d4ed8;background:#eff6ff;border:1px solid #bfdbfe;padding:2px 8px;border-radius:999px}
+.v359-freqerr-case-title{flex:1 1 auto;min-width:0;font-size:13px;font-weight:800;color:#17324d;overflow-wrap:anywhere}
+.v359-freqerr-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.v359-freqerr-steps>li{position:relative;padding-left:24px;font-size:12.5px;color:#334155;line-height:1.5;overflow-wrap:anywhere;min-width:0}
+.v359-freqerr-steps>li>em{position:absolute;left:0;top:2px;font-style:normal;width:16px;height:16px;border-radius:50%;background:#eff6ff;color:#1d4ed8;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.v359-freqerr-sub{margin-top:8px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:8px}
+.v359-freqerr-subgrp{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:9px 11px;min-width:0}
+.v359-freqerr-subgrp>b{display:block;font-size:11.5px;font-weight:800;color:#475569;margin-bottom:5px}
+.v359-freqerr-subgrp ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.v359-freqerr-subgrp li{position:relative;padding-left:12px;font-size:12px;line-height:1.5;color:#334155;overflow-wrap:anywhere}
+.v359-freqerr-subgrp li::before{content:"";position:absolute;left:2px;top:.65em;width:4px;height:4px;border-radius:50%;background:#94a3b8}
 .eyebrow{font-size:12px;color:var(--primary);font-weight:700;margin-bottom:7px}
 h1{font-size:28px;margin:0 0 6px;letter-spacing:-.7px}
 .subtitle{color:var(--muted);font-size:13px}
@@ -12494,6 +12511,49 @@ const V343_FREQUENT_ERRORS=[
       "(샘플 상태 확인상 아무 이상이 없을 경우) <b>\"알려주신 정보로 문의 접수하여 엔지니어가 연락드리겠습니다\"</b>라고 안내"
     ],
     keywords:["sample error","샘플에러","샘플 에러","샘플오류","샘플 오류"]
+  },
+  /* v359: AFIAS-10 BARCODE ERROR - 리딩 여부에 따라 CASE를 나누어 확인 순서(flow)로 표시.
+     flow 구조: [{tag, title, steps:[{text, sub:[{group, items:[]}]}]}] - sub는 선택 항목 */
+  {
+    id:"a10-barcode",
+    device:"a10",
+    deviceName:"AFIAS-10",
+    title:"BARCODE ERROR (바코드에러)",
+    note:"검체 튜브 장착 후 장비가 검체 바코드를 실제로 리딩했는지 우선 확인",
+    cause:"검체 바코드 미인식 또는 바코드 인식 후 오더 매칭 실패",
+    flowTitle:"확인 및 조치",
+    flow:[
+      {
+        tag:"CASE 1",
+        title:"검체 바코드를 리딩하지 못한 경우",
+        steps:[
+          {text:"바코드가 보이도록 검체 튜브를 다시 장착한 후 리딩되는지 확인"},
+          {text:"재장착 후에도 리딩되지 않을 경우 아래 항목 점검",
+           sub:[
+             {group:"검체 튜브 · 바코드 라벨 상태",items:[
+               "바코드 라벨 부착 위치",
+               "바코드 라벨 표면의 스크래치(긁힘) 여부",
+               "동일 위치에 바코드 라벨이 여러 겹 부착되어 장비가 튜브를 회전시키지 못하는지 여부",
+               "바코드 라벨 가장자리(Edge)가 들떠 샘플랙에 달라붙어 있는지 여부"
+             ]},
+             {group:"장비 동작 상태",items:[
+               "장비가 검체 튜브를 회전시키며 바코드를 리딩하는지 여부",
+               "바코드 모듈 자체의 반응(동작) 여부",
+               "튜브를 회전시키는 고무 러버의 모터 출력 저하 여부"
+             ]}
+           ]}
+        ]
+      },
+      {
+        tag:"CASE 2",
+        title:"검체 바코드는 리딩했으나 오더가 매칭되지 않는 경우",
+        steps:[
+          {text:"인터페이스 연결 상태 확인"},
+          {text:"장비 재부팅 후 재확인"}
+        ]
+      }
+    ],
+    keywords:["barcode error","barcode","바코드에러","바코드 에러","바코드오류","바코드 오류","바코드 인식","바코드 리딩","오더 매칭"]
   }
 ];
 function v343FreqErrCardHTML(e){
@@ -12503,11 +12563,22 @@ function v343FreqErrCardHTML(e){
     ${e.note?`<div class="v72-internal-warning"><span class="ico">${warnIco}</span><span>${e.note}</span></div>`:""}
     <div class="v343-freqerr-section">
       <div class="v343-freqerr-cause-row"><b>원인</b>${e.cause?`<span class="v343-freqerr-cause">${e.cause}</span>`:""}</div>
-      <ul>${e.causeList.map((c,i)=>`<li><em>${i+1}</em>${c}</li>`).join("")}</ul>
+      ${(e.causeList&&e.causeList.length)?`<ul>${e.causeList.map((c,i)=>`<li><em>${i+1}</em>${c}</li>`).join("")}</ul>`:""}
     </div>
-    <div class="v343-freqerr-section"><b>조치</b>
+    ${(e.flow&&e.flow.length)?v359FreqErrFlowHTML(e):""}
+    ${(e.actionList&&e.actionList.length)?`<div class="v343-freqerr-section"><b>조치</b>
       <ul>${e.actionList.map((a,i)=>`<li><em>${i+1}</em>${a}</li>`).join("")}</ul>
-    </div>
+    </div>`:""}
+  </div>`;
+}
+/* v359: 자주 발생하는 에러 - CASE별 확인 순서(flow) 렌더링.
+   .v343-freqerr-section 밖에 별도 클래스로 두어 기존 모바일 규칙(v346-2)과 충돌하지 않게 함 */
+function v359FreqErrFlowHTML(e){
+  return `<div class="v359-freqerr-flow"><b>${e.flowTitle||"확인 순서"}</b>
+    ${e.flow.map(c=>`<div class="v359-freqerr-case">
+      <div class="v359-freqerr-case-head">${c.tag?`<span class="v359-freqerr-case-tag">${c.tag}</span>`:""}<span class="v359-freqerr-case-title">${c.title}</span></div>
+      <ol class="v359-freqerr-steps">${(c.steps||[]).map((s,i)=>`<li><em>${i+1}</em>${s.text}${(s.sub&&s.sub.length)?`<div class="v359-freqerr-sub">${s.sub.map(g=>`<div class="v359-freqerr-subgrp">${g.group?`<b>${g.group}</b>`:""}<ul>${g.items.map(t=>`<li>${t}</li>`).join("")}</ul></div>`).join("")}</div>`:""}</li>`).join("")}</ol>
+    </div>`).join("")}
   </div>`;
 }
 /* v343: 상단 'AFIAS NET이 뭐예요?' 옆 '자주 발생하는 에러' 버튼 - 기기별 자주 발생 에러 모음 팝업 */
